@@ -1,4 +1,12 @@
-# Web Security Academy Series: [Learning Path](https://portswigger.net/web-security/all-topics)
+<h2 align="center">Web Security Academy Series:</h2>
+<h3 align="center"><a href="https://portswigger.net/web-security/all-topics">Learning Path</a></h3>
+
+<p align="center">
+  <img src="https://github.com/LinuxUser255/Web-Security-Academy-Series/assets/46334926/8d72f007-9461-45c3-b8c3-d1966954d98e" alt="WebSecurityAcademyLogo">
+</p>
+
+
+
 
 This is a forked repo of [**rkhal101's original Web Security Academy Series.**](https://github.com/rkhal101/Web-Security-Academy-Series)
 
@@ -50,7 +58,6 @@ Colaboration and suggestions for improvement is always welcomed. [**Click here t
 - [**Certification prepare Step 2: core web security testing skills**](https://portswigger.net/web-security/certification/how-to-prepare)
 
 
-# [Web Security Academy Learning Path](https://portswigger.net/web-security/all-topics)![WebSecurityAcademyLogo](https://github.com/LinuxUser255/Web-Security-Academy-Series/assets/46334926/8d72f007-9461-45c3-b8c3-d1966954d98e)
 
 
  
