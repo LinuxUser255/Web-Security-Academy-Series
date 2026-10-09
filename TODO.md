@@ -1,7 +1,12 @@
 # TODO: Repository Naming Convention Cleanup
 
 Tracking file for normalizing directory and file names across the repo.
-**Nothing below has been executed yet — this is a plan awaiting approval.**
+**STATUS: COMPLETE.** All renames below were executed with `git mv` and committed:
+
+- `refactor: rename directories to lowercase-kebab-case` (16 dirs)
+- `refactor: rename files to naming convention (md kebab-case, py snake_case)` (17 `.md` + 76 `.py`)
+- Link check (README.md, main.py, scripts/, cross-note markdown links): no stale
+  references found, so no link-fix commit was needed.
 
 ## Convention
 
