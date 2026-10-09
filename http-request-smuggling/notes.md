@@ -1228,7 +1228,7 @@ The back-end server prioritizes the Transfer-Encoding header: Chunked, and ignor
 
 ![REQUEST_SMUGGLING_BREAKDOWN_BLACKBOARD](REQUEST_SMUGGLING_BREAKDOWN_BLACKBOARD.png)
 
-![HTTP_REQ_SMUGGLING_Whiteboard](file:///home/linux/Pictures/HTTP_REQ_SMUGGLING_Whiteboard.png)
+![HTTP_REQ_SMUGGLING_Whiteboard](HTTP_REQ_SMUGGLING_Whiteboard.png)
 
 ### Same concept, then, when requesting an admin endpoint
 
